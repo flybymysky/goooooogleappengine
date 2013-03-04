@@ -1,0 +1,180 @@
+/* ----------------------------------------------main CSS---------------------------------------------- */	
+body {
+background:url('./pictures/homebg.jpg');
+background-repeat: repeat-y;
+background-color: #F6E653;
+margin-left: 6.5%;
+margin-top: 100px;
+}
+
+/* ---------------navigation bar--------------- */
+#navigation {
+position: fixed;
+top: 0;
+width: 85.5%;
+height: 35px;
+text-align: center;
+padding-top: 15px;
+background:url('./pictures/starters.jpg');
+background-repeat: no-repeat;
+background-position:center;
+background-color:white; 
+opacity: 0.8;
+box-shadow: 0px 0px 8px 0px gray;
+z-index: 1;
+}
+
+#navigation:hover {
+opacity: 1;
+}
+
+#navigation a {
+font-size: 30px;
+padding-left: 2%;
+padding-right: 2%;
+padding-bottom: 10px;
+color: 	#FF9895;
+font-family: "Just Me Again Down Here", impact;
+text-decoration: none;
+}
+
+#navigation a:hover {
+color: 	black;
+} 
+
+/* ---------------header--------------- */
+header{
+width:75%;
+height:5%;
+background-color: #ffffff;
+padding-top:2px;
+border: none;
+opacity: 0.6;
+text-align: center;
+}
+	
+	#title {
+	font-family: "Just Me Again Down Here";
+	font-weight: bold;
+	font-size: 50px;
+	color:#FD3F38;
+	/*#FA4F1A*/
+	}
+	
+	#firstletter {
+	font-size: 2em;
+	font-family: 'Just Me Again Down Here', cursive;
+	line-height: 0.0;
+	}
+ 
+	.quote {
+	font-family: "arial";
+	}
+
+/* ---------------side bar--------------- */
+nav {
+position: relative;
+float:right;
+width:12.5%;
+height:100%;
+margin-right:7.9%;
+margin-bottom:10%;
+text-align: center;
+box-shadow: 0px 0px 8px 0px orange;
+background-color: rgba(230, 20, 0, 0.5);
+color: rgba(1, 1, 1, 0.8);
+}
+
+	#dp {
+	position: relative;
+	width:70%;
+	border: 6px solid #ccc;
+	}
+
+	#sidebartitle {
+	font-family:"arial";
+	color: #FA4F1A;
+	}
+
+	#me {
+	font-family:"palatino";
+	color: maroon;
+	}
+	
+/* ---------------main content--------------- */
+#contentframe{
+position: left;
+float: left;
+height:50%;
+}
+
+#content{
+padding:1% 1% 1% 1%;
+border: none;
+width:73%;
+}
+
+	/*Post Header */
+	#postheader {
+	font-size: 50px;
+	font-family:"Just Me Again Down Here", arial;
+	color: #FD3F38; 
+	/*#FA4F1A*/
+	line-height: 1.0;
+	}
+
+	/*article 1 */
+	.post {
+	font-size: 20px;
+	font-family: "arial";
+	color: #6f692d;
+	}
+
+/* ---------------footer--------------- */
+
+
+/* --------------------------------------------resolution <321px------------------------------------------ */	
+@media only screen and (max-width: 320px) {
+body {
+	background: url('./pictures/homemobilebg.jpg') no-repeat; 
+	background-color: #F6E653;
+	}
+	#postheader {
+	text-align: center;
+	font-size: 30px;
+	}
+	#contentframe{
+	position: center;
+	float: center;
+	height:50%;
+	}
+	#content{
+	width: 98%;
+	}
+	.post {
+	font-size: 15px;
+	}
+	#navigation{
+	width: 85.5%;
+	height: 80px;
+	text-align: center;
+	padding-top: 15px;
+	background-position:center;
+	background-color:white; 
+	opacity: 1.0;
+	background:url('./pictures/startersmobile.jpg');
+	}
+	/*removed*/
+	nav {
+	float:center;
+	display: none;
+	}
+	/*header*/
+	header {
+	width:80%;
+	height:5%;
+	padding-left: 6.5%;
+	padding-right: 7%;
+	}
+
+}
