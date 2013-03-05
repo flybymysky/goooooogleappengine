@@ -58,10 +58,13 @@ class Guestbook(webapp2.RequestHandler):
 
 		if users.get_current_user():
 			greeting.author = users.get_current_user().nickname()
-
-			greeting.content = self.request.get('content')
-			greeting.put()
-			self.redirect('/?' + urllib.urlencode({'guestbook_name': guestbook_name}))
+			comment= self.request.get('content')
+			if len(comment)>0:
+				greeting.content = comment
+				greeting.put()
+				self.redirect('/?' + urllib.urlencode({'guestbook_name': guestbook_name}))
+			else:
+				self.redirect('/?' + urllib.urlencode({'guestbook_name': guestbook_name}))
 		else:
 			self.redirect('/?' + urllib.urlencode({'guestbook_name': guestbook_name}))
 # main
