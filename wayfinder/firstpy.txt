@@ -1,0 +1,14 @@
+
+class st(webapp2.RequestHandler):
+	def get(self):
+		user = users.get_current_user()
+		
+		template_values = {}
+		
+		if user:
+			template = jinja_environment.get_template('index.html')
+		
+		else:
+			self.redirect(users.create_login_url(self.request.uri))
+			
+		self.response.write(template.render(template_values))

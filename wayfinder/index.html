@@ -4,64 +4,34 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title> flybymysky :) </title>
-		<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here'>
-		<link rel="shortcut icon" href="http://5.asset.soup.io/asset/3110/6037_e6c6.png" type="image/x-icon" />
-		<link rel="stylesheet" href="static/css/style.css" />
-		<script src="script.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-        <script src="jquery-1.9.0.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
-		<script src="./sub-pages/jquery.snow.js"></script>
-		<script>
-			$(document).ready( function(){
-				$.fn.snow({ flakeColor: 'white' });
-			});
-		</script>
-	</head>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title> ArteScape DHS </title>
+	<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here'>
+	<link rel="shortcut icon" href="http://5.asset.soup.io/asset/3110/6037_e6c6.png" type="image/x-icon" />
+	<link rel="stylesheet" href="static/css/style.css" />
+</head>
  
-	<body>
-		<!--[if lt IE 7]>
-			<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-		<![endif]-->
-		
-		<div id = "navigation">
-			<a href="index.html">home</a>
-			<a href="sub-pages/portrait.html">portrait</a>
-			<a href="sub-pages/gallery.html">gallery</a>
-			<a href="sub-pages/tour.html">mini-game!</a>
-		</div>
-		
-		<nav>
-			</br>
-			<img id =dp src="static/css/pictures/dp2.png" title="Display Picture" alt="Display Picture">
-			<h1 id="sidebartitle">Hello</h1>
-			<p id="me"> Alan Ng </br> DHS </br> Astra Boomzxc 23 </br>Imba Squad </br> Brotherhood</p> 
-		</nav>
-		
-		<header> 
-			<h1> <span id="title"> FLY BY MY SKY :) </span> </h1>
-			<p class="quote"> <span id="y">Y</span>ou get ideas from daydreaming. You get ideas from being bored. You get ideas all the time.
-			</br>The <strong><em>only difference</em></strong> between writers and other people is that we notice when we're doing it. -Neil Gaiman </p>
-		</header>
-		</br>
-		
-		<frameset id="contentframe">
-		<section id="content">
-			<article>
-				<span id="postheader"> Welcome to Alan's little online outback!</span>
-				<p class="post"> <span id="firstletter">T</span>o begin, you may navigate via the header panel. 
-				</br>Visit Portrait to know me more, Gallery for a little sightseeing or Mini-game for some fun :D </p>
-			</article>
-			</br>
-		</section>
-		</frameset>
-		
-		<footer> 
-			<em> &copy 2013 flybymysky </em> 
-		</footer>
-	</body>
+<body>
+	<div id="loginout"><a href="{{ url }}">{{ url_linktext }}</a></div>
+
+	<form action="/sign" method="post">
+		<div><textarea name="content" rows="3" cols="60"></textarea></div>
+		<div><input type="submit" value="Sign Guestbook"></div>
+	</form>
+	
+	</br>
+	
+	<div id="guestnotes">
+	{% for greeting in greetings %}
+		{% if greeting.author %}
+			<b>{{ greeting.author }}</b> wrote:
+		{% else %}
+			An anonymous person wrote:
+		{% endif %}
+		<blockquote>{{ greeting.content|escape }}</blockquote>
+	{% endfor %}
+	</div>
+</body>
 </html> 
