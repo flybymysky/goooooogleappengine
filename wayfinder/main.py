@@ -27,11 +27,13 @@ class MainPage(webapp2.RequestHandler):
 		greetings_query = Greeting.all().ancestor(
 			guestbook_key(guestbook_name)).order('-date')
 		greetings = greetings_query.fetch(10)
-
+		
 		if users.get_current_user():
+			name= users.get_current_user().nickname()
 			url = users.create_logout_url(self.request.uri)
 			url_linktext = 'Logout'
 		else:
+			name = 'guest'
 			url = users.create_login_url(self.request.uri)
 			url_linktext = 'Login'
 
@@ -39,6 +41,7 @@ class MainPage(webapp2.RequestHandler):
 			'greetings': greetings,
 			'url': url,
 			'url_linktext': url_linktext,
+			'name': name,
 		}
 
 		template = jinja_environment.get_template('index.html')
@@ -56,11 +59,11 @@ class Guestbook(webapp2.RequestHandler):
 		if users.get_current_user():
 			greeting.author = users.get_current_user().nickname()
 
-		greeting.content = self.request.get('content')
-		greeting.put()
-		self.redirect('/?' + urllib.urlencode({'guestbook_name': guestbook_name}))
-
-	
+			greeting.content = self.request.get('content')
+			greeting.put()
+			self.redirect('/?' + urllib.urlencode({'guestbook_name': guestbook_name}))
+		else:
+			self.redirect('/?' + urllib.urlencode({'guestbook_name': guestbook_name}))
 # main
 app = webapp2.WSGIApplication([('/', MainPage), ('/sign', Guestbook)],
                               debug=True)

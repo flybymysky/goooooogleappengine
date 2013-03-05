@@ -11,24 +11,39 @@
 	<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here'>
 	<link rel="shortcut icon" href="http://5.asset.soup.io/asset/3110/6037_e6c6.png" type="image/x-icon" />
 	<link rel="stylesheet" href="static/css/style.css" />
+	
+	<script>
+function myFunction()
+{
+alert("Please login to comment.");
+}
+</script>
+
 </head>
  
 <body>
-	<div id="loginout"><a href="{{ url }}">{{ url_linktext }}</a></div>
-
-	<form action="/sign" method="post">
-		<div><textarea name="content" rows="3" cols="60"></textarea></div>
-		<div><input type="submit" value="Sign Guestbook"></div>
-	</form>
+	<div id="dashboard">
+	<span>Welcome, {{name}}</span>
+	<span> <a href="{{ url }}">{{ url_linktext }}</a></span>
+	</div>
 	
+	<form action="/sign" method="post">
+		<div><textarea name="content" rows="3"></textarea></div>
+		{% if name != "guest" %}
+			<div><input type="submit" value="comment"></div>
+		{% else %}
+			<div><input type="button" onclick="myFunction()" value="comment"></div>
+		{% endif %}
+	</form>
 	</br>
 	
-	<div id="guestnotes">
+	<div id="comments">
 	{% for greeting in greetings %}
 		{% if greeting.author %}
+			<em>{{ '{0.day}/{0.month}/{0.year} {0.hour}:{0.minute}'.format(greeting.date)}} </em>
 			<b>{{ greeting.author }}</b> wrote:
 		{% else %}
-			An anonymous person wrote:
+
 		{% endif %}
 		<blockquote>{{ greeting.content|escape }}</blockquote>
 	{% endfor %}
