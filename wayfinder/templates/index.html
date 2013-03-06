@@ -33,6 +33,7 @@ alert("Please login to comment.");
 		<b>To start off your journey, go to your profile by clicking on your name.</b>
 		</div>
 	{% endif %}
+	
 	<form action="/sign" method="post">
 		<div><textarea name="content" rows="3"></textarea></div>
 		{% if name != "guest" %}
@@ -41,18 +42,28 @@ alert("Please login to comment.");
 			<div><input type="button" onclick="myFunction()" value="comment"></div>
 		{% endif %}
 	</form>
+
 	</br>
 	
 	<div id="comments">
 	{% for greeting in greetings %}
-		{% if greeting.author %}
+		{% if not currentuser %}
 			<em>{{ '{0.day}/{0.month}/{0.year} {0.hour}:{0.minute}'.format(greeting.date)}} </em>
-			<b>{{ greeting.author }}</b> wrote:
+			<b>{{ greeting.author }}</b> wrote: <blockquote>{{ greeting.content|escape }}</blockquote>
 		{% else %}
+			{% if greeting.author != currentuser %}
+				<em>{{ '{0.day}/{0.month}/{0.year} {0.hour}:{0.minute}'.format(greeting.date)}} </em>
+				<b>{{ greeting.author }}</b> wrote: <blockquote>{{ greeting.content|escape }}</blockquote>
+			
+			{% elif greeting.author == currentuser %}
+				<em>{{ '{0.day}/{0.month}/{0.year} {0.hour}:{0.minute}'.format(greeting.date)}} </em>
+				<b>{{ greeting.author }}</b> wrote: <blockquote>{{ greeting.content|escape }}</blockquote> 
+				[edit|delete]</br></br>
 
+			{% endif %}
 		{% endif %}
-		<blockquote>{{ greeting.content|escape }}</blockquote>
 	{% endfor %}
+	
 	</div>
 </body>
 </html> 

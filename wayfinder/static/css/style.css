@@ -38,8 +38,10 @@ margin-right: 1%;
 background: white;
 opacity: 0.8;
 width: 30%;
+min-width: 200px;
 }
 textarea {
 margin-top:1%;
 width: 30%;
+min-width: 200px;
 }
