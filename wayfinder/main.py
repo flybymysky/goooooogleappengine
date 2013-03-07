@@ -46,7 +46,7 @@ def comments_key(comments_name=None):
 
 class Comments(webapp2.RequestHandler):
 	def post(self):
-		"""We set the same parent key on the 'Greeting' to ensure each greeting is in
+		"""We set the same parent key on the 'Comments' to ensure each comment is in
 		the same entity group. Queries across the single entity group will be
 		consistent. However, the write rate to a single entity group should
 		be limited to ~1/second. """
@@ -75,17 +75,7 @@ class MainPage(BaseHandler):
 		greetings_query = Greeting.all().ancestor(
 			comments_key(comments_name)).order('-date')
 		greetings = greetings_query.fetch(10)
-		'''
-		U = GqlQuery('select * from User where user=:1',USER)
-		if not U:
-		   msg = 1
-		else:
-			USER = users.get_current_user()
-		    u = User(user=USER,nickname=USER.nickname())
-		    u.put()
-		U.user
-		U.nickname
-		'''
+
 		if users.get_current_user():
 			currentuser = users.get_current_user().nickname()
 			U = GqlQuery("SELECT * FROM User WHERE nickname= :1", currentuser).get()
@@ -103,11 +93,11 @@ class MainPage(BaseHandler):
 			url = users.create_login_url(self.request.uri)
 			url_linktext = 'Login'
 			
-			
+		"""	
 		A = GqlQuery("SELECT * FROM Greeting WHERE author= :1", currentuser).get()
 		A.content = "some text"
 		A.put()
-
+		"""
 		params = {
 			'greetings': greetings,
 			'url': url,
