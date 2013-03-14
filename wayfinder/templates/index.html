@@ -10,33 +10,42 @@
 	<title> ArteScape DHS </title>
 	<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here'>
 	<link rel="shortcut icon" href="http://5.asset.soup.io/asset/3110/6037_e6c6.png" type="image/x-icon" />
-	<link rel="stylesheet" href="static/css/style.css" />
+	<link rel="stylesheet" href="../static/css/style.css" />
 	
 	<script>
 function myFunction()
 {
 alert("Please login to comment.");
 }
-</script>
-
+	</script>
+<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
 </head>
  
 <body>
 	<div id="dashboard">
-	<span>Welcome, {{name}}</span>
+	{% if loginstatus %}
+		<span>Welcome, <a href="/account">{{name}}</a> </span>
+	{% else %}
+		<span>Welcome, {{name}} </span>
+	{% endif %}
 	<span> <a href="{{ url }}">{{ url_linktext }}</a></span>
 	</div>
 	
-	{% if msg == 1 %}
+	{% if intromessage %}
 		<div id="firsttime">Welcome to ArteScape DHS for the first time! </br>
 		(this will only display on your first login)</br>
 		<b>To start off your journey, go to your profile by clicking on your name.</b>
 		</div>
 	{% endif %}
 	
+	{% if errormsg == 1 %}
+		<div id="firsttime"> Error! Please do not leave any blanks. </div>
+	{% endif %}
+	
 	<form action="/sign" method="post">
-		<div><textarea name="content" rows="3"></textarea></div>
-		{% if name != "guest" %}
+		<div id="textarea"><textarea name="content" rows="3"></textarea></div>
+		{% if loginstatus %}
 			<div><input type="submit" value="comment"></div>
 		{% else %}
 			<div><input type="button" onclick="myFunction()" value="comment"></div>
@@ -47,17 +56,17 @@ alert("Please login to comment.");
 	
 	<div id="comments">
 	{% for greeting in greetings %}
-		{% if not currentuser %}
+		{% if not name %}
 			<em>{{ '{0.day}/{0.month}/{0.year} {0.hour}:{0.minute}'.format(greeting.date)}} </em>
-			<b>{{ greeting.author }}</b> wrote: <blockquote>{{ greeting.content|escape }}</blockquote>
+			<b>{{ greeting.author }}</b> wrote: <blockquote><span>{{ greeting.content|escape }}</span></blockquote>
 		{% else %}
-			{% if greeting.author != currentuser %}
+			{% if greeting.author != name %}
 				<em>{{ '{0.day}/{0.month}/{0.year} {0.hour}:{0.minute}'.format(greeting.date)}} </em>
-				<b>{{ greeting.author }}</b> wrote: <blockquote>{{ greeting.content|escape }}</blockquote>
+				<b>{{ greeting.author }}</b> wrote: <blockquote><span>{{ greeting.content|escape }}</span></blockquote>
 			
-			{% elif greeting.author == currentuser %}
+			{% elif greeting.author == name %}
 				<em>{{ '{0.day}/{0.month}/{0.year} {0.hour}:{0.minute}'.format(greeting.date)}} </em>
-				<b>{{ greeting.author }}</b> wrote: <blockquote>{{ greeting.content|escape }}</blockquote> 
+				<b>{{ greeting.author }}</b> wrote: <blockquote><span>{{ greeting.content|escape }}</span></blockquote> 
 				[edit|delete]</br></br>
 
 			{% endif %}

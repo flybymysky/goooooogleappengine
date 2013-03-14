@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title> ArteScape DHS </title>
+	<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here'>
+	<link rel="shortcut icon" href="http://5.asset.soup.io/asset/3110/6037_e6c6.png" type="image/x-icon" />
+	<link rel="stylesheet" href="../static/css/style.css" />
+	<script type="text/javascript" src="../static/js/tinybox.js"></script>
+</head>
+ 
+<body>
+	<div id="dashboard">
+		<li>
+			<a href="/">Home</a>
+		</li>
+	{% if loginstatus %}
+		<li>
+			<a href="#">Dashboard</a>
+			<ul>
+				<li><a href="/post">New Post</a></li>
+
+				<li><a href="#">Edit Posts</a></li>
+				
+				<li><a href="#">Favourites</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#">{{name}}</a>
+			<ul>
+				<li><a href="#">profile</a></li>
+				<li><a href="#">account</a></li>
+			</ul>
+		<li>
+	{% else %}
+		<li><a href="#">Welcome, {{name}}</a> </li>
+	{% endif %}
+		<li> <a href="{{ url }}">{{ url_linktext }}</a></li>
+	</div>
+	
+	<div id="space"> </div>
+	
+	{% if intromessage %}
+		<div id="firsttime">Welcome to ArteScape DHS for the first time! </br>
+		(this will only display on your first login)</br>
+		<b>To start off your journey, go to your profile by clicking on your name.</b>
+		</div>
+	{% endif %}
+	
+
+	
+	<div id="recent">
+	Recent Posts
+	</div>	
+	{% for p in post %}
+
+	
+		<div id="firstdiv" onclick="TINY.box.show({iframe:'/posts/{{p.key()}}',boxid:'frameless',width:750,height:450,fixed:false,maskid:'blackmask',maskopacity:40})">
+		
+
+				<div id="title1">{{p.title}}</div>
+
+			
+			</br>
+			<img src="/thumbnails/{{p.key()}}" />
+			</br></br>
+			
+			<div id="postedby">
+				<em> posted by</em> {{p.author}}<em> 
+				</br>
+				{{ '{0.day}/{0.month}/{0.year} {0.hour}:{0.minute}'.format(p.date)}} </em>
+			</div>
+			
+		</div>
+
+	{% endfor %}
+
+	
+<script type="text/javascript">
+function openJS(){alert('loaded')}
+function closeJS(){alert('closed')}
+</script>
+</body>
+</html> 

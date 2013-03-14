@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title> New Post </title>
+	<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here'>
+	<link rel="shortcut icon" href="http://5.asset.soup.io/asset/3110/6037_e6c6.png" type="image/x-icon" />
+	<link rel="stylesheet" href="../static/css/post.css" />
+
+<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+</head>
+ 
+<body>
+	<div id="dashboard">
+		<li>
+			<a href="/">Home</a>
+		</li>
+		<li>
+			<a href="#">Dashboard</a>
+			<ul>
+				<li><a href="/post">New Post</a></li>
+
+				<li><a href="#">Edit Posts</a></li>
+				
+				<li><a href="#">Favourites</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#">{{name}}</a>
+			<ul>
+				<li><a href="#">profile</a></li>
+				<li><a href="#">account</a></li>
+			</ul>
+		<li>
+		<li> <a href="{{ url }}">{{ url_linktext }}</a></li>
+	</div>
+	
+	<div id="space"> </div>
+	
+	<div class="form">
+	<form enctype="multipart/form-data" method="post">
+		<div id="header">New Post </div></br>
+		<input type="textbox" name="title" placeholder="Title" />
+		</br></br>
+		
+		<div id="images">
+		<label>Main Image (& thumbnail on mainpage) </label> </br>
+		<input type="file" name="mainimage"/>
+		</br><input type="submit" value="preview thumbnail">
+		</br>
+		<label>Additional Images </label>
+		<select name="Addimages">
+			<option value="a">0</option>
+			<option value="a">1</option>
+			<option value="a">2</option>
+			<option value="a">3</option>
+			<option value="a">4</option>
+			<option value="a">5</option>
+			<option value="a">6</option>
+			<option value="a">7</option>
+			<option value="a">8</option>
+			<option value="a">9</option>
+			<option value="a">10</option>
+			<option value="a">11</option>
+			<option value="a">12</option>
+			<option value="a">13</option>
+			<option value="a">14</option>
+			<option value="a">15</option>
+			<option value="a">16</option>
+			<option value="a">17</option>
+			<option value="a">18</option>
+			<option value="a">19</option>
+			<option value="a">20</option>
+		</select>
+		</div></br>
+		
+		
+		
+		<div id="textarea"><textarea name="content" rows="3"></textarea></div>
+		<p>
+		{% if message == 1 %}
+			<span class="success">Post Success!</span>
+		{% elif message == 2 %}
+			<span class="error">Post Error! Please check for blank forms.</span>
+			
+		{% endif %}
+		</p>	
+		<div><input type="submit" value="post"></div>
+	</form>
+	</div>
+	<div>
+	<script type="text/javascript">
+	function openJS(){alert('loaded')}
+	function closeJS(){alert('closed')}
+	</script>
+	</div>
+</body>
+</html> 

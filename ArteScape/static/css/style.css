@@ -1,0 +1,134 @@
+/* ----------------------------------------------main CSS---------------------------------------------- */	
+body {
+background:url('../pictures/homea.jpg');
+background-repeat: repeat;
+margin: 0;
+}
+#firsttime{
+color: white;
+background-color: rgba(0,0,0,0.5);
+width: 100%;
+margin-top:1%;
+margin-left:auto;
+margin-right:auto;
+text-align:center;
+}
+
+/*------------------------------------------------*/
+#space {
+height:40px;
+width:100%;
+}
+#dashboard {
+list-style:none;
+font-weight:bold;
+float:left;
+position:fixed;
+z-index:5;
+background-color:rgba(0,0,0,0.5);
+color: white;
+width: 100%;
+}
+
+#dashboard li{
+float:left;
+margin-right:10px;
+position:relative;
+}
+
+#dashboard a{
+display:block;
+padding:5px;
+color:white;
+text-decoration:none;
+}
+
+#dashboard a:hover{
+color:grey;
+text-decoration:underline;
+}
+
+#dashboard a:link{
+color: white;
+}
+#dashboard a:visited{
+color: white;
+}
+
+#dashboard ul{
+margin-top:0px;
+color: white;
+list-style:none;
+position:absolute;
+left:-9999px;
+z-index:6;
+}
+
+#dashboard ul li{
+text-align: center;
+padding-top:1px;
+float:none;
+}
+
+#dashboard ul a{
+white-space:nowrap;
+}
+
+#dashboard li:hover ul{
+left:-38px;
+}
+
+#dashboard li:hover a{
+background-color:rgba(0,0,0,0.5);
+text-decoration:underline;
+}
+
+#dashboard li:hover ul a{
+text-decoration:none;
+}
+
+#dashboard li:hover ul li a:hover{
+background-color:rgba(0,0,0,0.7);
+}
+
+/*------------------------------------------------*/
+#recent {
+background-color:rgba(0,0,0,0.3);
+color: white;
+font-size: 25px;
+padding-left:1%;
+}
+
+#firstdiv {
+width: 25%;
+min-width: 200px;
+text-align:center;
+background: white;
+opacity: 0.8;
+margin:1%;
+padding:1%;
+float: left;
+}
+#firstdiv:hover {
+background: white;
+opacity:0.9;
+}
+
+#postedby {
+text-align:right;
+}
+#title1 {
+font-size:18px;
+font-weight:bold;
+}
+
+
+.tbox {position:absolute; display:none; padding:14px 17px; z-index:900}
+.tinner {padding:15px; -moz-border-radius:5px; border-radius:5px; background:#fff url(images/preload.gif) no-repeat 50% 50%; border-right:1px solid #333; border-bottom:1px solid #333}
+.tmask {position:absolute; display:none; top:0px; left:0px; height:100%; width:100%; background:#000; z-index:800}
+.tclose {position:absolute; top:0px; right:0px; width:30px; height:30px; cursor:pointer; background:url(images/close.png) no-repeat}
+.tclose:hover {background-position:0 -30px}
+
+#bluemask {background:#4195aa}
+#frameless {padding:0}
+#frameless .tclose {left:6px}

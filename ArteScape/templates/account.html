@@ -1,0 +1,43 @@
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title> ArteScape DHS </title>
+	<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here'>
+	<link rel="shortcut icon" href="http://5.asset.soup.io/asset/3110/6037_e6c6.png" type="image/x-icon" />
+	<link rel="stylesheet" href="../static/css/style.css" />
+</head>
+<body>
+	<div id="dashboard">
+	{% if loginstatus %}
+		<span>Welcome, <a href="/profile/account">{{name}}</a> </span>
+	{% else %}
+		<span>Welcome, {{name}} </span>
+	{% endif %}
+	<span> <a href="{{ url }}">{{ url_linktext }}</a></span>
+	</div>
+	
+	<form>
+		<label>
+			<div>Nickname</div>
+			<input type="text" name="nickname">
+		</label>
+			{% if updatesuccess %}
+				<div>Nickname has been updated successfully!</div>
+			{% elif updateerror %}
+				<div>Please input a proper nickname.</div>
+			{% endif %}
+		<input type="submit">
+	</form>
+	
+	<div id="comments">
+	{% for greeting in greetings %}
+		{% if greeting.author == name %}
+			<em>{{ '{0.day}/{0.month}/{0.year} {0.hour}:{0.minute}'.format(greeting.date)}} </em>
+			<b>{{ greeting.author }}</b> wrote: <blockquote><span>{{ greeting.content|escape }}</span></blockquote> 
+			[edit|delete]</br></br>
+		{% endif %}
+	{% endfor %}
+	</div>
+</body>
+	
+	

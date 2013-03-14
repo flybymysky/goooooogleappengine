@@ -32,7 +32,7 @@ class BaseHandler(webapp2.RequestHandler):
 class Greeting(db.Model):
 	"""Models an individual Guestbook entry with an author, content, and date."""
 	author = db.StringProperty()
-	content = db.StringProperty(multiline=True)
+	content = db.TextProperty()
 	date = db.DateTimeProperty(auto_now_add=True)
 	
 class User(db.Model):
@@ -44,7 +44,7 @@ def comments_key(comments_name=None):
 	return db.Key.from_path('Comments', comments_name or 'default_comments')
 	"""Constructs a Datastore key for a Guestbook entity with guestbook_name."""
 
-class Comments(webapp2.RequestHandler):
+class Comments(BaseHandler):
 	def post(self):
 		"""We set the same parent key on the 'Comments' to ensure each comment is in
 		the same entity group. Queries across the single entity group will be
@@ -55,8 +55,8 @@ class Comments(webapp2.RequestHandler):
 		
 		if users.get_current_user():
 			greeting.author = users.get_current_user().nickname()
-			comment= self.request.get('content')
-			if len(comment)>0:
+			comment=self.request.get('content')
+			if comment:
 				greeting.content = comment
 				greeting.put()
 				self.redirect('/?' + urllib.urlencode({'comments_name': comments_name}))
@@ -64,56 +64,119 @@ class Comments(webapp2.RequestHandler):
 				self.redirect('/?' + urllib.urlencode({'comments_name': comments_name}))
 		else:
 			self.redirect('/?' + urllib.urlencode({'comments_name': comments_name}))
-
+		
+		
 # Main Page -----------------------------------------------------------------------------------
 class MainPage(BaseHandler):
+		
 	def get(self):
-		currentuser = users.get_current_user()
-		msg = 0
-		user = User()
-		comments_name=self.request.get('comments_name')
+		comments_name = self.request.get('comments_name')
 		greetings_query = Greeting.all().ancestor(
 			comments_key(comments_name)).order('-date')
+			
 		greetings = greetings_query.fetch(10)
-
+		
+		loginstatus = users.get_current_user()
+		intromessage = False
+		
+		#if logged in
 		if users.get_current_user():
-			currentuser = users.get_current_user().nickname()
-			U = GqlQuery("SELECT * FROM User WHERE nickname= :1", currentuser).get()
-			if not U:
-				msg = 1
-				user.username = users.get_current_user()
-				user.nickname = users.get_current_user().nickname()
-				user.put()
-			name= users.get_current_user().nickname()
+			name = users.get_current_user().nickname()
 			url = users.create_logout_url(self.request.uri)
 			url_linktext = 'Logout'
 			
+			#check if user in database
+			U = GqlQuery("SELECT * FROM User WHERE nickname= :1", name).get()
+			
+			#for first-time log-in
+			if not U: 
+				intromessage = True #display intro message
+				user = User()
+				user.username = users.get_current_user() #add username into database
+				user.nickname = users.get_current_user().nickname() #add nickname into database
+				user.put()
+		#not logged in
 		else:
 			name = 'guest'
 			url = users.create_login_url(self.request.uri)
 			url_linktext = 'Login'
-			
-		"""	
-		A = GqlQuery("SELECT * FROM Greeting WHERE author= :1", currentuser).get()
-		A.content = "some text"
-		A.put()
-		"""
+		
 		params = {
-			'greetings': greetings,
+			'url':url, 
+			'url_linktext':url_linktext, 
+			'name':name, 
+			'greetings':greetings, 
+			'loginstatus':loginstatus, 
+			'intromessage':intromessage,
+		}
+		self.render('index.html', **params)
+
+# Account Page ---------------------------------------------------------------------------------
+class Account(BaseHandler):
+	def get(self):
+		comments_name = self.request.get('comments_name')
+		greetings_query = Greeting.all().ancestor(
+			comments_key(comments_name)).order('-date')	
+		greetings = greetings_query.fetch(10)
+		
+		loginstatus = users.get_current_user()
+		if loginstatus:
+			name = users.get_current_user().nickname()
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+		else:
+			name = 'guest'
+			url = users.create_login_url(self.request.uri)
+			url_linktext = 'Login'
+		params = {
+			'url':url, 
+			'url_linktext':url_linktext, 
+			'name':name, 
+			'loginstatus':loginstatus,
+			'greetings':greetings, 
+		}
+		self.render('account.html', **params)
+		
+	def post(self):
+		updatename = self.request.get('nickname')
+		updatesuccess=False
+		updateerror=False
+		
+		if updatename:
+			updatesuccess=True
+			user = User()
+			user.username = users.get_current_user()
+			user.nickname = updatename
+			user.put()
+		else:
+			updateerror=True
+			
+# Profile Page (public) ------------------------------------------------------------------------			
+class Profile(BaseHandler):
+	def get(self, user):
+		u=db.GqlQuery('SELECT * FROM User WHERE nickname = :1', user).get()
+		currentuser = users.get_current_user()
+		if not u:
+			self.error(404)
+			return
+		if users.get_current_user():
+			name= users.get_current_user().nickname()
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+		else:
+			name = 'guest'
+			url = users.create_login_url(self.request.uri)
+			url_linktext = 'Login'
+		params = {
 			'url': url,
 			'url_linktext': url_linktext,
 			'name': name,
-			'msg': msg,
 			'currentuser' :currentuser,
-		}
-
-		self.render('index.html',**params)
+        }
+		self.render('profile.html', **params)       
 		
-# Profile Page (public) ------------------------------------------------------------------------			
-class Profile(webapp2.RequestHandler):
-	def get(self, username):
-		pass
+		
 
 # Page Assigns ---------------------------------------------------------------------------------
-app = webapp2.WSGIApplication([('/', MainPage), ('/sign', Comments),('/profile/(.*)',Profile),],
+app = webapp2.WSGIApplication([('/', MainPage), ('/sign', Comments),('/account', Account),(r'/profile/(.+)',Profile),],
                               debug=True)

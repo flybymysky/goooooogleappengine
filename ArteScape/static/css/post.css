@@ -1,0 +1,141 @@
+body {
+background:url('../pictures/homea.jpg');
+background-repeat: repeat;
+margin:0;
+}
+form {
+display:block;
+margin-left:auto;
+margin-right:auto;
+}
+/*------------------------------------------------*/
+#space {
+height:40px;
+width:100%;
+}
+#dashboard {
+list-style:none;
+font-weight:bold;
+float:left;
+position:fixed;
+z-index:5;
+background-color:rgba(0,0,0,0.5);
+color: white;
+width: 100%;
+}
+
+#dashboard li{
+float:left;
+margin-right:10px;
+position:relative;
+}
+
+#dashboard a{
+display:block;
+padding:5px;
+color:white;
+text-decoration:none;
+}
+
+#dashboard a:hover{
+color:grey;
+text-decoration:underline;
+}
+
+#dashboard a:link{
+color: white;
+}
+#dashboard a:visited{
+color: white;
+}
+
+#dashboard ul{
+margin-top:0px;
+color: white;
+list-style:none;
+position:absolute;
+left:-9999px;
+}
+
+#dashboard ul li{
+text-align: center;
+padding-top:1px;
+float:none;
+}
+
+#dashboard ul a{
+white-space:nowrap;
+}
+
+#dashboard li:hover ul{
+left:-38px;
+}
+
+#dashboard li:hover a{
+background-color:rgba(0,0,0,0.5);
+text-decoration:underline;
+}
+
+#dashboard li:hover ul a{
+text-decoration:none;
+}
+
+#dashboard li:hover ul li a:hover{
+background-color:rgba(0,0,0,0.7);
+}
+
+.form {
+text-align: center;
+color:black;
+}
+#header {
+text-align: center;
+font-size: 40px;
+color: white;
+background-color:rgba(0,0,0,0.4);
+}
+
+#images {
+color: white;
+background-color: rgba(0,0,0,0.1);
+}
+
+form{
+text-align: left;
+background-color:rgba(0,0,0,0.1);
+width:auto;
+display: inline-block;
+padding: 5px;
+}
+
+textarea {
+width:500px;
+}
+#textarea {
+background: white;
+width: 500px;
+}
+#message {
+border-style: solid;
+border-color: black;
+width:auto;
+background: white;
+}
+
+
+.error{
+background:#ffd2d3;
+color:#871414;
+width:auto; 
+text-align:center;
+padding:4px;
+border: 1px solid #df8f90;
+}
+.success{
+background:#d4ffcd;
+color:#258815;
+width:auto; 
+text-align:center;
+padding:4px;
+border: 1px solid #9adf8f;
+}

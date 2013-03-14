@@ -1,0 +1,14 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../static/css/postique.css" />
+</head>
+
+<body>
+<div id="title">{{post.title}} </div>
+
+<em><div id="authordate">{{ '{0.day}/{0.month}/{0.year} {0.hour}:{0.minute}'.format(post.date)}} by {{post.author}}</div></em>
+
+<img src="/mainimages/{{post.key()}}" /> </br>
+<div id="content">
+{{post.content|safe}}
+</div>

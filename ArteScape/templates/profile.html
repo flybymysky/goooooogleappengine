@@ -1,0 +1,13 @@
+<body>
+	<div id="dashboard">
+	{% if currentuser %}
+		<span>Welcome, <a href="/profile/account">{{name}}</a> </span>
+	{% else %}
+		<span>Welcome, {{name}} </span>
+	{% endif %}
+	<span> <a href="{{ url }}">{{ url_linktext }}</a></span>
+	</div>
+	
+</body>
+	
+	
