@@ -137,8 +137,6 @@ class Upload(MainHandler):
 			post.content = uploadC
 			post.title = uploadT
 			post.mainimage = db.Blob(uploadM)
-			uploadMT = images.resize(self.request.get('mainimage'), 300, 300)
-			post.thumbnail = db.Blob(uploadMT)
 			post.put()
 			message=1
 		
