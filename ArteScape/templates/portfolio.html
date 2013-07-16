@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title> flybymysky </title>
+	<link rel="stylesheet" href="../static/css/portfolio.css" />
+	<link href='http://fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Petit+Formal+Script' rel='stylesheet' type='text/css'>
+</head>
+ 
+<body>
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+{% if loginstatus %}
+	<div id="accountheader">
+		<a id="logout" href="{{ url }}">logout </a>
+		<a id="user" href="/account">{{name}}</a>
+		<a id="edit" href="/folio/edit">edit</a>
+		<a id="home" href="/">home</a>
+	</div>
+{% else %}
+{% endif %}
+<div class = "navigation">
+	<a id="title" href="/folio/flybymysky">flybymysky</a>
+	<a id="bio" href="/folio/flybymysky/bio">biography</a>
+	<a id="bio" href="/folio/flybymysky/projects">projects</a>
+	<a id="bio" href="/folio/flybymysky/news">news</a>
+	<a id="bio" href="/folio/flybymysky/contact">contact</a>
+	<br>
+	<div class ="links">
+		<a id="da" href="http://sphurlx.deviantart.com/">deviantart</a>
+		<a id="yt" href="http://http://www.youtube.com/wueijun/">youtube</a>
+		<a id="gh" href="https://github.com/flybymysky">github</a>
+	</div><!-- for projects page
+	<div class="category">
+		<div id="film">Film</div>
+		<div id="animate">Animation</div>
+		<div id="photog">Photography</div>
+		<div id="digi">Digital Art</div>	
+		<div id="web">Web Design</div>
+	</div>!-->
+</div>
+
+<div class="contents">
+<div id="container">
+	<div id="image" style="background-image:url(http://artescape.dhs.sg/mainimages/ag5zfmRoc2FydGVzY2FwZXIMCxIEUG9zdBihlgMM)"> </div>
+	<div id="cat">Digital Art</div><div id="title">Mario Book</div> <div id="collection">Mario's</div><!--collections!-->
+</div>
+<div id="container">
+	<div id="image" style="background-image:url(http://24.media.tumblr.com/cfd5a6da3faa6f5d376f371d1eca40f7/tumblr_mh5hlvXiIv1rmc1rio1_500.gif)"> </div>
+	<div id="cat">Film</div><div id="title">Chocolate Cake</div> <div id="collection">Mmmn</div><!--collections!-->
+</div>
+<div id="container">
+	<div id="image" style="background-image:url(http://24.media.tumblr.com/tumblr_lkm7pn1rEN1qitvdso1_500.png)"> </div>
+	<div id="cat">Photography</div><div id="title">Letter to God</div> <div id="collection">Messages</div><!--collections!-->
+</div>
+<div id="container">
+	<div id="image" style="background-image:url(http://24.media.tumblr.com/a9b7c51271bfcff122d9c64692a39717/tumblr_mi0kmlpcXU1qjm9bpo1_500.png)"> </div>
+	<div id="cat">Web Design</div><div id="title">Quotey</div> <div id="collection">Messages</div><!--collections!-->
+</div>
+<div id="container">
+	<div id="image" style="background-image:url(http://www.mariowiki.com/images/b/b7/Ch6_1.png)"> </div>
+	<div id="cat">Digital Art</div><div id="title">Mario Book</div> <div id="collection">Mario's</div><!--collections!-->
+</div>
+<div id="container">
+	<div id="image" style="background-image:url(http://www.mariowiki.com/images/b/b7/Ch6_1.png)"> </div>
+	<div id="cat">Digital Art</div><div id="title">Mario Book</div> <div id="collection">Mario's</div><!--collections!-->
+</div>
+<div id="container">
+	<div id="image" style="background-image:url(http://www.mariowiki.com/images/b/b7/Ch6_1.png)"> </div>
+	<div id="cat">Digital Art</div><div id="title">Mario Book</div> <div id="collection">Mario's</div><!--collections!-->
+</div>
+<div id="container">
+	<div id="image" style="background-image:url(http://www.mariowiki.com/images/b/b7/Ch6_1.png)"> </div>
+	<div id="cat">Digital Art</div><div id="title">Mario Book</div> <div id="collection">Mario's</div><!--collections!-->
+</div>
+<div id="container">
+	<div id="image" style="background-image:url(http://www.mariowiki.com/images/b/b7/Ch6_1.png)"> </div>
+	<div id="cat">Digital Art</div><div id="title">Mario Book</div> <div id="collection">Mario's</div><!--collections!-->
+</div>
+</div>
+	
+</body>

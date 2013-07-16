@@ -57,7 +57,7 @@ class MainimageHandler(webapp2.RequestHandler):
 	def get(self, post_id):
 		post = Post.get(post_id)
 		self.response.headers['Content-Type'] = 'image/jpeg'
-		self.response.out.write(post.thumbnail)
+		self.response.out.write(post.mainimage)
 		
 class PostHandler(MainHandler):
 	def get(self, post_id):
@@ -152,9 +152,86 @@ class Upload(MainHandler):
 		}
 		self.render('post.html', **params)
 		
+class portfolio(MainHandler):
+    def get(self):
+		loginstatus = users.get_current_user()
+		if users.get_current_user():
+			name = users.get_current_user().nickname()
+			url = users.create_logout_url(self.request.uri)
+			owner = users.get_current_user().nickname() #portfolio owner is user
+		else:
+			name = 'guest'
+			url = users.create_login_url(self.request.uri)
 		
-			
+		params = {
+		'name':name,
+		'url':url,
+		'loginstatus':loginstatus,
+		}
+		self.render('portfolio.html', **params)		
+
+class video(MainHandler):
+    def get(self):
+		params = {}
+		self.render('tubular/index.html', **params)
+
+class htmlvideo(MainHandler):
+    def get(self):
+		params = {}
+		self.render('htmlvideo.html', **params)
+
+class countdown(MainHandler):
+    def get(self):
+		params = {}
+		self.render('timeclock.html', **params)			
+#----------------------------------------------------------------------------------------------		
+class Upload(MainHandler):
+	def get(self):
+		loginstatus = users.get_current_user()
+		if users.get_current_user():
+			name = users.get_current_user().nickname()
+			url = users.create_logout_url(self.request.uri)
+			url_linktext = 'Logout'
+			params = {
+				'url':url, 
+				'url_linktext':url_linktext, 
+				'name':name,
+				'loginstatus':loginstatus,
+			}
+			self.render('post.html', **params)
+		else:
+			self.redirect('/')
+	def post(self):
+		loginstatus = users.get_current_user()
+		post = Post()
+		message = 0
+
+		name = users.get_current_user().nickname()
+		url = users.create_logout_url(self.request.uri)
+		url_linktext = 'Logout'
+		post.author = users.get_current_user().nickname()
+		uploadC = self.request.get('content')
+		uploadT = self.request.get('title')
+		uploadM = self.request.get('mainimage')
+		if uploadC != "<br>" and uploadT and uploadM:
+			post.content = uploadC
+			post.title = uploadT
+			post.mainimage = db.Blob(uploadM)
+			post.put()
+			message=1
+		
+		else:
+			message=2
+		params = {
+		'url':url, 
+		'url_linktext':url_linktext, 
+		'name':name, 
+		'post':post, 
+		'loginstatus':loginstatus, 
+		'message':message,
+		}
+		self.render('post.html', **params)		
 # Page Assigns ----------------------------------------------------------------------------------------------------------
 app = webapp2.WSGIApplication([('/', MainPage),
 								(r'/thumbnails/(.*)', ThumbnailHandler), (r'/mainimages/(.*)', MainimageHandler),
-								(r'/posts/(.*)', PostHandler),('/post', Upload)], debug=True)
+								(r'/posts/(.*)', PostHandler),('/post', Upload),('/folio/flybymysky', portfolio),('/countdown', countdown),('/video', video),('/video2', htmlvideo)], debug=True)

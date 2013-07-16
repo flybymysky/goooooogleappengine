@@ -7,4 +7,8 @@ color:gray;
 font-size: 15px;
 padding-left:0.5%;
 }
+img {
+max-width: 90%;
+height: auto;
+}
 #content {

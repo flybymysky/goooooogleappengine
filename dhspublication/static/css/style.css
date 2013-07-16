@@ -1,0 +1,115 @@
+body{
+/*background: url('http://fc05.deviantart.net/fs71/f/2013/179/c/0/road_by_arsenixc-d6b0pbw.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;*/
+background-color: rgba(255,246,236,1);
+margin:0;
+position: relative;
+width: 93%;
+height: 180px;
+margin-top: 2%;
+margin-left: 7%;
+}
+
+.header #logo {
+background: url('http://fc00.deviantart.net/fs12/i/2006/261/b/1/Nostalgia_sientes__by_faboarts.jpg');
+background-size: 180px 180px;
+float:left;
+text-align: center;
+border-radius: 15px;
+border-style: solid;
+border-color: gray;
+border-width: 1px;
+width: 180px;
+height: 180px;
+}
+.header #tagline {
+margin-left: 3%;
+line-height: 260px;
+font-size: 50px;
+font-family: just me again down here;
+float:left;
+height: 180px;
+bottom: 0;
+}
+
+#navigation {
+background-size: auto 100px;
+background-color: rgba(255, 255, 255, 0.5);
+float: left;
+border-radius: 15px;
+border-style: solid;
+border-color: gray;
+border-width: 1px;
+position:relative;
+width: 90%;
+height: 50px;
+margin-top: 2%;
+}
+
+#navigation div {
+height: 100%;
+font-family: 'Just Me Again Down Here';
+font-size:150%;
+float:left;
+padding-left:2%;
+padding-right:2%;
+position:relative;
+}
+
+#navigation #about {
+border-top-left-radius:12px;
+border-bottom-left-radius:12px;
+}
+
+#navigation #login {
+border-top-right-radius:12px;
+border-bottom-right-radius:12px;
+float:right;
+}
+
+#navigation a{
+display:block;
+padding:5px;
+color: black;
+text-decoration:none;
+}
+
+#navigation div:hover{
+background-color: rgba(5,5,5,0.2);
+color: white;
+text-decoration:underline;
+}
+
+#navigation a:visited{
+color: black;
+}
+.main {
+float: left;
+margin-top: 2%;
+width: 90.3%;
+}
+
+.main #content {
+background-color: rgba(255, 255, 255, 0.5);
+float: left;
+width: 75%;
+height:auto;
+border-style: solid;
+border-color: gray;
+border-width: 1px;
+padding: 0.8%;
+}
+.main #sidebar {
+background-color: rgba(255, 255, 255, 0.5);
+margin-left: 1%;
+float: left;
+width: 20%;
+height: a;
+border-style: solid;
+border-color: gray;
+border-width: 1px;
+padding: 0.8%;
+}

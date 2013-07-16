@@ -1,0 +1,47 @@
+#time{
+text-align:center;
+font-family: 'Telex', sans-serif;
+font-weight: bold;
+font-size: 150%;
+}
+#shell{
+margin-top:3%;
+width:88%;
+height:auto;
+margin-left:auto;
+margin-right:auto;
+}
+#countdown{
+box-shadow: 0 0 5px #888;
+border-radius: 15px;
+float:left;
+width:21%;
+height:40%;
+margin-left:2%;
+margin-right:2%;
+background-color: white;
+text-align:center;}
+#cdtitle{
+margin-top:-2%;
+font-family: 'Telex', sans-serif;
+font-size: 250%;
+}
+#left{
+font-family: calibri;
+box-shadow: inset  0 -8px 8px -8px rgb(255-105-105);
+border-radius: 15px 15px 0 0;
+color: white;	
+font-size:300%;
+background-color: red;}
+
+#number {
+padding-top: 2.5%;
+font-size: 700%;
+font-family: 'Telex', sans-serif;
+}
+#quote {
+float:left;
+margin-top: 3%;
+text-align:center;
+width:100%;
+font-size:200%;}

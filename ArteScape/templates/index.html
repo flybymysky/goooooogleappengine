@@ -60,7 +60,7 @@
 	{% for p in post %}
 
 	
-		<div id="firstdiv" onclick="TINY.box.show({iframe:'/posts/{{p.key()}}',boxid:'frameless',width:750,height:450,fixed:false,maskid:'blackmask',maskopacity:40})">
+		<div id="firstdiv" title="click for full post" onclick="TINY.box.show({iframe:'/posts/{{p.key()}}',boxid:'frameless',width:750,height:450,fixed:false,maskid:'blackmask',maskopacity:40})" >
 		
 
 				<div id="title1">{{p.title}}</div>
@@ -69,12 +69,16 @@
 			</br>
 			<img src="/mainimages/{{p.key()}}" />
 			</br></br>
-			
+			<div id="symbols">
+				<span><img id="like" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRNeSrw6tUg1dVZP-_lY94tCqZF7sg-Aqb9004KD77AfHDYD5ZtVA" title="add to favourites" />	 </span>
+				<span>favourite</span><span>comments</span>
+			</div>			
 			<div id="postedby">
 				<em> posted by</em> {{p.author}}<em> 
 				</br>
 				{{ '{0.day}/{0.month}/{0.year} {0.hour}:{0.minute}'.format(p.date)}} </em>
 			</div>
+
 			
 		</div>
 

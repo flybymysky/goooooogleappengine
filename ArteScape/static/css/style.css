@@ -100,16 +100,17 @@ padding-left:1%;
 }
 
 #firstdiv {
-width: 25%;
+width: auto;
 height: 331px;
-min-width: 200px;
 text-align:center;
 background: white;
 opacity: 0.8;
 margin:1%;
 padding:1%;
 float: left;
+cursor:pointer;
 }
+
 #firstdiv:hover {
 background: white;
 opacity:0.9;
@@ -118,6 +119,11 @@ opacity:0.9;
 #postedby {
 text-align:right;
 }
+#symbols {
+clear: none;
+float: left;
+}
+
 #title1 {
 font-size:18px;
 font-weight:bold;
@@ -125,10 +131,16 @@ font-weight:bold;
 
 img {
 height:auto;
-width:100%;
+width:auto;
 max-height: 200px;
 max-width: 320px;
 }
+
+#like {
+height:30px;
+width:auto;
+}
+
 
 .tbox {position:absolute; display:none; padding:14px 17px; z-index:900}
 .tinner {padding:15px; -moz-border-radius:5px; border-radius:5px; background:#fff url(images/preload.gif) no-repeat 50% 50%; border-right:1px solid #333; border-bottom:1px solid #333}
